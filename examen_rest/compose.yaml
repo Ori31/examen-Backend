@@ -1,0 +1,26 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: laboratorio
+      MYSQL_USER: laboratorio
+      MYSQL_PASSWORD: laboratorio
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  api:
+    build: .
+    container_name: api_fastapi
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - 8000:8000
+
+volumes:
+  mysql_data:

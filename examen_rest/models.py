@@ -1,0 +1,12 @@
+from sqlalchemy import Boolean, Column, Integer, String
+from database import Base
+
+
+class Laptop(Base):
+    __tablename__ = "laptops"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    marca = Column(String(100), nullable=False)
+    modelo = Column(String(100), nullable=False)
+    ram_gb = Column(Integer, nullable=False)
+    disponible = Column(Boolean, default=True, nullable=False)
